@@ -12,9 +12,9 @@ lbr_port=30005
 kmp_port=30002
 kmr_ip=172.31.1.69
 robot="KMR"
-lbr_id=1
-kmp_id=1
-camera_id=1
+lbr_id=2
+kmp_id=2
+camera_id=2
 udp_ip="129.241.90.39:5000"
 
 if [ $build_type = 'source_' ]
