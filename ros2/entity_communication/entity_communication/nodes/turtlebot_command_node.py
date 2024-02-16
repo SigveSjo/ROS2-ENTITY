@@ -72,7 +72,7 @@ class TurtleBotCommandNode(Node):
             'status' is either 0 (offline) or 1 (online).
         """
         msg = String()
-        msg.data = self.id + ":" + self.robot + ":kmp:" + str(status)
+        msg.data = self.id + ":" + self.robot + ":turtlebot:" + str(status)
         self.kmp_status_publisher.publish(msg)
         self.set_status(status)
 
