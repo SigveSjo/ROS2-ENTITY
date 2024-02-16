@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'kmr_communication'
+package_name = 'entity_communication'
 
 setup(
     name=package_name,
@@ -27,9 +27,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'lbr = kmr_communication.nodes.lbr_command_node:main',
-            'kmp = kmr_communication.nodes.kmp_command_node:main',
-            'camera = kmr_communication.nodes.camera_node:main',
+            'lbr = entity_communication.nodes.lbr_command_node:main',
+            'kmp = entity_communication.nodes.kmp_command_node:main',
+            'turtlebot = entity_communication.nodes.turtlebot_command_node:main',
+            'camera = entity_communication.nodes.camera_node:main',
         ],
     },
 )

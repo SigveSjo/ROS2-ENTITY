@@ -42,7 +42,7 @@ class Socket:
             self.conn.setsockopt(socket.SOL_SOCKET, option, option_value)
             self.conn.bind(self.server_address)
         except:
-           print(cl_red('Error: ') + "Connection for KUKA cannot assign requested address:", self.ip, self.port)
+           print(cl_red('Error: ') + "Connection for Entity cannot assign requested address:", self.ip, self.port)
 
     def close(self):
         self.isconnected = False
