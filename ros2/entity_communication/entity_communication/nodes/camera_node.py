@@ -39,7 +39,7 @@ class CameraNode(Node):
     def handle_camera(self, data):
         if data.data.lower() == "start" and self.status == 0:
             print(cl_green("Starting camera"))
-            self.proc = subprocess.Popen(["/bin/bash", "kmr_communication/kmr_communication/script/startcamera.sh", self.ip])
+            self.proc = subprocess.Popen(["/bin/bash", "entity_communication/entity_communication/script/startcamera.sh", self.ip])
             self.status = 1
         elif data.data.lower() == "stop":
             try:
