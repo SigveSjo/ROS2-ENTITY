@@ -7,7 +7,7 @@ connection_type=$2
 connection_type=$( echo "$connection_type" | tr '[a-z]' '[A-Z]' )
 run_type=$3
 
-# Prod parameters as default 
+# Prod parameters as default AAAAAAAAAAA
 lbr_port=30005
 kmp_port=30002
 kmr_ip=172.31.1.69
