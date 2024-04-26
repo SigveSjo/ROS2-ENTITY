@@ -12,6 +12,7 @@ lbr_port=30005
 kmp_port=30002
 kmr_ip=172.31.1.69 # 127.0.0.1 (localhost) for turtlebot
 robot="turtlebot" # turtlebot or KMR
+
 lbr_id=1
 kmp_id=1
 turtlebot_id=6
@@ -69,6 +70,7 @@ then
     sed -i "s/^\([[:space:]]*robot_id:\).*/\1 $turtlebot_id/" src/turtlebot3/turtlebot3_bringup/param/waffle_pi.yaml
 
     . ~/turtlebot3_ws/install/local_setup.bash
+    
     colcon build --symlink-install --packages-ignore turtlebot3_description turtlebot3_teleop turtlebot3_example
     #colcon build --symlink-install --packages-ignore entity_communication
     export TURTLEBOT3_MODEL=waffle_pi 
