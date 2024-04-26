@@ -39,11 +39,11 @@ class TurtleBotCommandNode(Node):
         # Make a listener for relevant topics
         sub_twist = self.create_subscription(Twist, 'cmd_vel_' + str(self.id), self.twist_callback, 10)
         sub_pose = self.create_subscription(Pose, 'pose_' + str(self.id), self.pose_callback, 10)
-        sub_shutdown = self.create_subscription(String, 'kmp_shutdown_' + str(self.id), self.shutdown_callback, 10)
+        sub_shutdown = self.create_subscription(String, 'turtlebot_shutdown_' + str(self.id), self.shutdown_callback, 10)
         sub_status_check = self.create_subscription(String, 'status_check', self.status_callback, 10)
 
         # Publishers
-        self.kmp_status_publisher = self.create_publisher(String, 'kmp_status', 10)
+        self.turtlebot_status_publisher = self.create_publisher(String, 'turtlebot_status', 10)
 
         while not self.soc.isconnected:
             pass
@@ -73,7 +73,7 @@ class TurtleBotCommandNode(Node):
         """
         msg = String()
         msg.data = self.id + ":" + self.robot + ":turtlebot:" + str(status)
-        self.kmp_status_publisher.publish(msg)
+        self.turtlebot_status_publisher.publish(msg)
         self.set_status(status)
 
     def set_status(self, status):

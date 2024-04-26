@@ -7,11 +7,12 @@ connection_type=$2
 connection_type=$( echo "$connection_type" | tr '[a-z]' '[A-Z]' )
 run_type=$3
 
-# Prod parameters as default AAAAAAAAAAA
+# Prod parameters as default
 lbr_port=30005
 kmp_port=30002
-kmr_ip=172.31.1.69
-robot="turtlebot" #turtlebot or KMR
+kmr_ip=172.31.1.69 # 127.0.0.1 (localhost) for turtlebot
+robot="turtlebot" # turtlebot or KMR
+
 lbr_id=1
 kmp_id=1
 turtlebot_id=6
@@ -45,13 +46,16 @@ then
 
     sed -i 's/lbr_id/'$lbr_id'/' entity_communication/entity_communication/config/bringup.yaml
     sed -i 's/kmp_id/'$kmp_id'/' entity_communication/entity_communication/config/bringup.yaml
+    sed -i 's/turtlebot_id/'$turtlebot_id'/' entity_communication/entity_communication/config/bringup.yaml
     sed -i 's/camera_id/'$camera_id'/' entity_communication/entity_communication/config/bringup.yaml
 
     sed -i 's/lbr_port/'$lbr_port'/' entity_communication/entity_communication/config/bringup.yaml
     sed -i 's/kmp_port/'$kmp_port'/' entity_communication/entity_communication/config/bringup.yaml
+    sed -i 's/turtlebot_port/'$turtlebot_port'/' entity_communication/entity_communication/config/bringup.yaml
 
     sed -i 's/lbr_ip/'$kmr_ip'/' entity_communication/entity_communication/config/bringup.yaml
     sed -i 's/kmp_ip/'$kmr_ip'/' entity_communication/entity_communication/config/bringup.yaml
+    sed -i 's/turtlebot_ip/'$turtlebot_ip'/' entity_communication/entity_communication/config/bringup.yaml
 
     sed -i 's/camera_udp_ip/'$udp_ip'/' entity_communication/entity_communication/config/bringup.yaml
     
@@ -62,7 +66,10 @@ then
 elif [ $robot = 'turtlebot' ]
 then
     cd ~/turtlebot3_ws
-    #sed "/^\([[:space:]]*robot_id: \).*/s//\8\'$turtlebot_id\'/" src/turtlebot3/turtlebot3_bringup/param/waffle_pi.yaml > src/turtlebot3/turtlebot3_bringup/param/waffle_pi.yaml
+
+    sed -i "s/^\([[:space:]]*robot_id:\).*/\1 $turtlebot_id/" src/turtlebot3/turtlebot3_bringup/param/waffle_pi.yaml
+
+    . ~/turtlebot3_ws/install/local_setup.bash
     
     colcon build --symlink-install --packages-ignore turtlebot3_description turtlebot3_teleop turtlebot3_example
     #colcon build --symlink-install --packages-ignore entity_communication
@@ -71,3 +78,4 @@ then
 fi
 
 exit 0
+
