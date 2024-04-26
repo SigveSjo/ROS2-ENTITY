@@ -16,6 +16,12 @@ kmp_command_node:
     port: 'kmp_port'
     KMR/ip: 'kmp_ip'
 
+turtlebot_command_node:
+  ros__parameters:
+    id: 'turtlebot_id' # Robot ID
+    port: 'turtlebot_port'
+    turtlebot/ip: 'turtlebot_ip'
+
 camera_node:
   ros__parameters:
     id: 'camera_id'

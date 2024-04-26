@@ -2,7 +2,7 @@ connection_params:
   ros__parameters:
 
     connection_type: 'TCP'
-    robot: 'turtlebot' # turtlebot or KMR
+    robot: 'KMR'
 
 lbr_command_node:
   ros__parameters:
@@ -18,7 +18,7 @@ kmp_command_node:
 
 turtlebot_command_node:
   ros__parameters:
-    id: '1' # Robot ID
+    id: '9' # Robot ID
     port: '50018'
     turtlebot/ip: '127.0.0.1'
 
