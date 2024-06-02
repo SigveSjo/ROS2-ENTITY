@@ -1,5 +1,6 @@
 # ROS2-ENTITY
 This repository is part of the Master's project conducted by Andreas Chanon Arnholm and Mathias Neslow Henriksen during the spring of 2021.
+The repository has been furtrher updated as a part of the Master's project conducted by Andreas Lindkjenn Bø and Sigve Sjøvold during the spring of 2024.
 
 This code is related to the robot entities that are operated and monitored using the Asset Administration Shell (AAS). The main aspect of this repository is a ROS 2 program that starts a connection with the robot entity components through a TCP or UDP connection. With this connection, the program both receives status updates from the robot and sends them to the AAS and forwards commands received from an AAS to be executed on the robot. The software has been tested with a Raspberry Pi 4 mounted on top of a KUKA KMR iiwa robot. 
 
@@ -14,15 +15,15 @@ Bash scripts:
 * [ros2/build.sh](ros2/build.sh): bash script for configuring, building and running the ROS 2 program.
 
 ROS 2 Package:
-* [ros2/kmr_communication/kmr_communication](ros2/kmr_communication/kmr_communication): entity-related code. This currently only consists of code related to the KMR iiwa, but can be expanded for other robots. It should really be named "entity_communication".
-* [ros2/kmr_communication/package.xml](ros2/kmr_communication/package.xml): dependencies for the ROS 2 package.
-* [ros2/kmr_communication/setup.py](ros2/kmr_communication/setup.py): this is where one speciefies which files should be included when the package is built and prepared for execution. 
+* [ros2/entity_communication/kmr_communication](ros2/entity_communication/entity_communication): entity-related code. This currently only consists of code related to the robot.
+* [ros2/entity_communication/package.xml](ros2/entity_communication/package.xml): dependencies for the ROS 2 package.
+* [ros2/entity_communication/setup.py](ros2/entity_communication/setup.py): this is where one specifies which files should be included when the package is built and prepared for execution. 
 
 Entity-related code:
-* [ros2/kmr_communication/kmr_communication/config](ros2/kmr_communication/kmr_communication/config): yaml-files with parameters for each robot and its components.
-* [ros2/kmr_communication/kmr_communication/launch](ros2/kmr_communication/kmr_communication/launch): launch script that simultaneously executes all ROS nodes relating to entity communication.
-* [ros2/kmr_communication/kmr_communication/nodes](ros2/kmr_communication/kmr_communication/nodes): all ROS nodes relating to entity communication.
-* [ros2/kmr_communication/kmr_communication/scripts](ros2/kmr_communication/kmr_communication/script): additional scripts without ROS 2-specific code.
+* [ros2/entity_communication/entity_communication/config](ros2/entity_communication/entity_communication/config): yaml-files with parameters for each robot and its components.
+* [ros2/entity_communication/entity_communication/launch](ros2/entity_communication/entity_communication/launch): launch script that simultaneously executes all ROS nodes relating to entity communication.
+* [ros2/entity_communication/entity_communication/nodes](ros2/entity_communication/entity_communication/nodes): all ROS nodes relating to entity communication.
+* [ros2/entity_communication/entity_communication/scripts](ros2/entity_communication/entity_communication/script): additional scripts without ROS 2-specific code.
 
 
 ## Setup
@@ -85,12 +86,12 @@ With ROS 2 source build, UDP connection and "real" clients (connected to robot i
 `$ bash build.sh source_ UDP prod`
 
 ### Manual usage
-For this, make sure that the [config file](ros2/kmr_communication/kmr_communication/config/bringup.yaml) has the correct parameters for whatever it is you want to do (i.e. IPs and ports need to match either the robot's or the dummy clients').
+For this, make sure that the [config file](ros2/entity_communication/entity_communication/config/bringup.yaml) has the correct parameters for whatever it is you want to do (i.e. IPs and ports need to match either the robot's or the dummy clients').
 
 While in the `ros2` folder, do the following:
 1. `$ colcon build --symlink-install`
 2. `$ source install/setup.bash`
-3. `$ ros2 launch kmr_communication kmr.launch.py`
+3. `$ ros2 launch entity_communication entity.launch.py`
 
 ### Connecting dummy clients
 While the ROS 2 program is running:
